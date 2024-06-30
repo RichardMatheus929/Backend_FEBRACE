@@ -1,11 +1,22 @@
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework import filters
-from rest_framework import status
+
 from projetos.models import Projeto
 from .Serializers import ProjetoSerializer
 
 import random
+
+def remove_duplicate_project(allprojetos):
+    unique_projects = []
+    unique_names = set()
+    for project in allprojetos:
+        if project['nome'] in unique_names:
+            pass
+        else:
+            unique_names.add(project['nome'])
+            unique_projects.append(project)
+
+    return unique_projects
 
 class ProjetoViewSet(ModelViewSet):
     queryset = Projeto.objects.all()
@@ -24,24 +35,9 @@ class ProjetoViewSet(ModelViewSet):
         serializer = self.get_serializer(queryset, many=True)
 
         allprojetos = serializer.data
+        allprojetos = remove_duplicate_project(allprojetos)
 
         random.shuffle(allprojetos)
 
         return Response(allprojetos)
 
-    # def list(self, request, *args, **kwargs):
-    #     # Obtém os parâmetros da query string
-    #     query_params = request.query_params
-
-    #     projetos = self.get_queryset()
-    #     serializer = self.get_serializer(projetos,many=True)
-
-    #     # JSON padrão a ser retornado
-    #     response_data = {
-    #         "message": "Este é um JSON padrão para todas as requisições GET",
-    #         "status": "success",
-    #         "data": serializer.data, #todos os dados do meu serializer ProjetoSerializer
-    #         "query_params": query_params.dict()  # Converte os parâmetros da query string em um dicionário
-    #     }
-
-    #     return Response(response_data, status=status.HTTP_200_OK)
