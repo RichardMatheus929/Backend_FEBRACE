@@ -58,16 +58,16 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "https://richardmatheus929.github.io"
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:5173",
+#     "https://richardmatheus929.github.io"
+# ]
 
 # Ou, se você estiver usando uma versão mais antiga do django-cors-headers:
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:5173",
-    "https://richardmatheus929.github.io"
-]
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:5173",
+#     "https://richardmatheus929.github.io"
+# ]
 
 ROOT_URLCONF = 'febrace.urls'
 
