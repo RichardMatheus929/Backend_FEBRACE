@@ -45,9 +45,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -58,6 +58,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ALL_ORIGINS = True
+
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'febrace.urls'
 
